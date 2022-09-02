@@ -1,4 +1,7 @@
-import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { authOperations } from '../redux/auth';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,13 +16,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function SignUp() {
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    dispatch(authOperations.register({ name, email, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -27,6 +48,7 @@ export default function SignUp() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          onSubmit={handleSubmit}
           sx={{
             marginTop: 8,
             display: 'flex',
@@ -47,39 +69,34 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  value={name}
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="Your name"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
+                  value={email}
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  value={password}
                   required
                   fullWidth
                   name="password"
@@ -87,6 +104,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>

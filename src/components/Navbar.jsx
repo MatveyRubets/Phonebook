@@ -10,11 +10,14 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 3 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="a" sx={{ flexGrow: 0.05 }}>
-            Homepage
+          <Typography
+            variant="h6"
+            sx={{ flexGrow: 0.05, textDecoration: 'none' }}
+          >
+            <Link to="/goit-react-hw-08-phonebook">Homepage</Link>
           </Typography>
-          <Typography variant="h6" component="a" sx={{ flexGrow: 1 }}>
-            Contacts
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            <Link to="/contacts">Contacts</Link>
           </Typography>
           <Button color="inherit">
             <Link to="/login">Login</Link>

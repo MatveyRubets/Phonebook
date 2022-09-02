@@ -2,6 +2,7 @@ import Navbar from 'components/Navbar';
 import HomePage from 'pages/HomePage';
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
+import ContactsPage from 'pages/ContactsPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export const App = () => {
@@ -12,6 +13,7 @@ export const App = () => {
         <Route path="/goit-react-hw-08-phonebook" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
       </Routes>
     </Router>
   );
