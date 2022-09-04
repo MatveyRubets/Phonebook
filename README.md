@@ -1,5 +1,5 @@
 Structure
 
 - /register: type public
-- /login: type private
+- /login: type public
 - /contacts: type private

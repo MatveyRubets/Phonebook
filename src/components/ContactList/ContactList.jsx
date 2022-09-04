@@ -1,19 +1,22 @@
-import ContactItem from './ContactItem';
+import React from 'react';
+import ContactListItem from 'components/ContactListItem';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
-import Loader from 'components/Loader';
 
 const ContactList = () => {
   const contacts = useSelector(contactsSelectors.getContacts);
   const value = useSelector(contactsSelectors.getFilteredContacts);
-  const loading = useSelector(contactsSelectors.IsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch, contacts, value]);
 
   const getFilteredNames = () => {
     return contacts.filter(contact =>
@@ -23,15 +26,13 @@ const ContactList = () => {
 
   let searchContact = value === '' ? contacts : getFilteredNames();
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <div>
       {contacts.length > 0 &&
-        searchContact.map(({ id, phone, name }) => {
-          return <ContactItem key={id} id={id} name={name} number={phone} />;
+        searchContact.map(({ id, number, name }) => {
+          return (
+            <ContactListItem key={id} id={id} name={name} number={number} />
+          );
         })}
     </div>
   );

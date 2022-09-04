@@ -37,27 +37,18 @@ const rootReducer = {
   error,
 };
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: getDefaultMiddleware({
+const middleware = [
+  ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+];
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware,
   devTools: process.env.NODE_ENV !== 'production',
 });
 
 export const persistor = persistStore(store);
-
-// const middleware = getDefaultMiddleware =>
-//   getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     },
-//   });
-
-// export const store = configureStore({
-//   reducer: rootReducer,
-//   middleware,
-//   devTools: process.env.NODE_ENV !== 'production',
-// });
