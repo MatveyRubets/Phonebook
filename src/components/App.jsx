@@ -23,7 +23,7 @@ export const App = () => {
   return (
     <div>
       <AppBar />
-      <Suspense fallback={<p>LOADING...</p>}>
+      <Suspense fallback={<p>Loading...</p>}>
         {!isFetchingCurrentUser && (
           <Routes>
             <Route path="/" element={<HomePage />} />

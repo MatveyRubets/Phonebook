@@ -16,11 +16,11 @@ const ContactList = () => {
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
-  }, [dispatch, contacts, value]);
+  }, [dispatch, value]);
 
   const getFilteredNames = () => {
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(value)
+      contact.name.toLowerCase().includes(value.toLowerCase())
     );
   };
 
