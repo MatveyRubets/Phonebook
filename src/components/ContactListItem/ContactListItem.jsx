@@ -14,7 +14,7 @@ const ContactListItem = ({ id, number, name }) => {
           onClick={() => dispatch(contactsOperations.removeContacts(id))}
           className="p-1 bg-red-600 rounded mr-2 "
         >
-          <AiOutlineDelete>Delete</AiOutlineDelete>
+          <AiOutlineDelete></AiOutlineDelete>
         </button>
       </div>
       {name}: {number}

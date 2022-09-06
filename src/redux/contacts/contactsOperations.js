@@ -30,6 +30,7 @@ export const removeContacts = createAsyncThunk(
   async id => {
     try {
       const contacts = await contactsApi.removeContacts(id);
+
       return contacts;
     } catch (error) {
       return error.message;
