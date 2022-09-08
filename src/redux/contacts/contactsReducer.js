@@ -5,21 +5,12 @@ import {
   removeContacts,
 } from './contactsOperations';
 import { filter } from 'redux/contacts/contactsActions';
-import { Notify } from 'notiflix';
 
 const entities = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,
-  [addContacts.fulfilled]: (state, { payload }) => {
-    console.log('AddContacts reducer:', state, payload);
-
-    return [...state, payload];
-  },
-  [removeContacts.fulfilled]: (state, { payload }) => {
-    console.log('RemoveContacts reducer:', state, payload);
-    Notify.warning('Contact deleted. Refresh the page to see the changes');
-
-    return state.filter(({ id }) => id !== payload);
-  },
+  [addContacts.fulfilled]: (state, { payload }) => [...state, payload],
+  [removeContacts.fulfilled]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 const isLoading = createReducer(false, {
