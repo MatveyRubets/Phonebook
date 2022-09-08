@@ -14,10 +14,6 @@ const ContactList = () => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(contactsOperations.fetchContacts());
-  }, [dispatch, value]);
-
   const getFilteredNames = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(value.toLowerCase())
