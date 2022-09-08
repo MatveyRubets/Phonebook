@@ -23,7 +23,7 @@ const ContactList = () => {
   let searchContact = value === '' ? contacts : getFilteredNames();
 
   return (
-    <div>
+    <div className="py-4">
       {contacts.length > 0 &&
         searchContact.map(({ id, number, name }) => {
           return (

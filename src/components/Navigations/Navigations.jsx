@@ -7,13 +7,6 @@ const Navigation = () => {
 
   return (
     <nav className="flex align-center">
-      <NavLink
-        className=" inline-block px-6 py-2.5 text-white font-medium text-m leading-tight uppercase "
-        to="/"
-      >
-        Home
-      </NavLink>
-
       {isLoggedIn && (
         <NavLink
           className=" inline-block px-6 py-2.5 text-white font-medium text-m leading-tight uppercase"

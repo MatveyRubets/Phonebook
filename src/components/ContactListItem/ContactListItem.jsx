@@ -7,7 +7,7 @@ const ContactListItem = ({ id, number, name }) => {
   const dispatch = useDispatch();
 
   return (
-    <li className=" list-none flex align-middle " key={id}>
+    <li className=" list-none flex align-middle py-1" key={id}>
       <div>
         <button
           type="button"
