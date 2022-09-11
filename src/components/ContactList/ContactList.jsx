@@ -7,7 +7,7 @@ import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 const ContactList = () => {
   const contacts = useSelector(contactsSelectors.getContacts);
-  const value = useSelector(contactsSelectors.getFilteredContacts);
+  const filter = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,15 +16,15 @@ const ContactList = () => {
 
   const getFilteredNames = () => {
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(value.toLowerCase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-  let searchContact = value === '' ? contacts : getFilteredNames();
+  let searchContact = filter === '' ? contacts : getFilteredNames();
 
   return (
     <div className="py-4">
-      {contacts.length > 0 &&
+      {searchContact &&
         searchContact.map(({ id, number, name }) => {
           return (
             <ContactListItem key={id} id={id} name={name} number={number} />

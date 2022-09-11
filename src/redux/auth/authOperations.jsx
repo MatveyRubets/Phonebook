@@ -26,19 +26,24 @@ export const register = createAsyncThunk('auth/register', async credentials => {
   }
 });
 
-export const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    Notiflix.Notify.success('Login successfully');
-    return data;
-  } catch (error) {
-    Notiflix.Notify.failure(
-      'The email or password is entered incorrectly or such an account does not exist. Try again.'
-    );
-    return error.response.status;
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/login', credentials);
+      token.set(data.token);
+      Notiflix.Notify.success('Login successfully');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        Notiflix.Notify.failure(
+          'The email or password is entered incorrectly or such an account does not exist. Try again.'
+        ),
+        'The email or password is entered incorrectly or such an account does not exist. Try again.'
+      );
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
   try {

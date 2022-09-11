@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const value = useSelector(contactsSelectors.getFilteredContacts);
+  const value = useSelector(contactsSelectors.getFilter);
 
   const inputChange = event => {
     const changeValue = event.target.value;

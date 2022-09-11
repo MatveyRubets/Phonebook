@@ -11,6 +11,12 @@ const entities = createReducer([], {
   [addContacts.fulfilled]: (state, { payload }) => [...state, payload],
   [removeContacts.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [fetchContacts.rejected]: () => [],
+  [fetchContacts.pending]: () => null,
+  [addContacts.rejected]: (_, { payload }) => payload,
+  [addContacts.pending]: () => null,
+  [removeContacts.rejected]: (_, { payload }) => payload,
+  [removeContacts.pending]: () => null,
 });
 
 const isLoading = createReducer(false, {
@@ -25,14 +31,7 @@ const isLoading = createReducer(false, {
   [removeContacts.rejected]: () => false,
 });
 
-const error = createReducer(null, {
-  [fetchContacts.rejected]: (_, { payload }) => payload,
-  [fetchContacts.pending]: () => null,
-  [addContacts.rejected]: (_, { payload }) => payload,
-  [addContacts.pending]: () => null,
-  [removeContacts.rejected]: (_, { payload }) => payload,
-  [removeContacts.pending]: () => null,
-});
+const error = createReducer(null, {});
 
 const filterReducer = createReducer('', {
   [filter]: (_, { payload }) => payload.toLowerCase(),
