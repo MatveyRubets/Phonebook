@@ -35,10 +35,7 @@ export const logIn = createAsyncThunk(
       Notiflix.Notify.success('Login successfully');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        Notiflix.Notify.failure(
-          'The email or password is entered incorrectly or such an account does not exist. Try again.'
-        ),
+      Notiflix.Notify.failure(
         'The email or password is entered incorrectly or such an account does not exist. Try again.'
       );
     }
@@ -50,9 +47,10 @@ export const logOut = createAsyncThunk('auth/logout', async thunkAPI => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    return thunkAPI.rejectWithValue(
-      'Something went wrong, it was not possible to log out of the account. Try again.'
+    Notiflix.Notify.failure(
+      'The email or password is entered incorrectly or such an account does not exist. Try again.'
     );
+    return error.response.status;
   }
 });
 

@@ -8,9 +8,7 @@ export const fetchContacts = createAsyncThunk(
       const contacts = await contactsApi.fetchContacts();
       return contacts;
     } catch (error) {
-      alert(error.message);
-      window.location.reload(true);
-      return;
+      return error.message;
     }
   }
 );

@@ -18,7 +18,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
-
-// username > 10
-// align navbar for responsive
-// align forms center
