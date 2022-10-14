@@ -20,13 +20,13 @@ TailwindCSS
 ```
 $PROJECT_ROOT     
 ├── public
-    ├── favicon.ico # Website Icon
+    ├── favicon.ico   # Website Icon
 ├── src
-    ├── components # UI components
-    ├── pages # Pages components
-    ├── redux # Global state store
-    ├── index.jsx # Entry point
-    └── index.css # Style entry point
+    ├── components    # UI components
+    ├── pages         # Pages components
+    ├── redux         # Global state store
+    ├── index.jsx     # Entry point
+    └── index.css     # Style entry point
 ```
 
 ## How to run Project
