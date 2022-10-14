@@ -17,7 +17,7 @@ TailwindCSS
   can be composed to build any design, directly in your markup
 
 ## Project structure
-	```
+```
 $PROJECT_ROOT     
 ├── public
     ├── favicon.ico # Website Icon
@@ -27,7 +27,7 @@ $PROJECT_ROOT
     ├── redux # Global state store
     ├── index.jsx # Entry point
     └── index.css # Style entry point
-	```
+```
 
 ## How to run Project
 1. Install dependencies
